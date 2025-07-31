@@ -7,6 +7,11 @@ import team_router from './routers/api/team_router.js';
 import syncer from './database/syncer.js';
 import player_web_router from './routers/web/player_web_router.js';
 import matches_web_router from './routers/web/match_web_router.js';
+import css from 'connect-session-sequelize';
+import session from 'express-session';
+import { checkLogged } from './controllers/web/user_web_controller.js';
+import user_web_router from './routers/web/user_router.js';
+import sequelize from './database/mysql.js';
 
 if (!await syncer()) {
     process.exit();
@@ -20,6 +25,44 @@ const hbs = create({
     partialsDir: 'views/partials/'
 });
 
+const SequelizeStore = css(session.Store);
+
+const sequelizeStore = new SequelizeStore({
+
+    db: sequelize,
+
+    tableName: 'sessions',
+
+    checkExpirationInterval: 5 * 60 * 1000,
+
+    expiration: 1 * 60 * 60 * 1000 
+
+});
+
+app.use(session({
+
+    secret: '*&long+and+secure+secret=%445',
+
+    name: 'sess_cookie_param',
+
+    store: sequelizeStore,
+
+    cookie: {
+
+        maxAge: 1 * 60 * 60 * 1000,
+
+        secure: false,
+
+        httpOnly: true
+
+    },
+
+    saveUninitialized: false, 
+
+    resave: false
+
+}));
+
 app.use(express.json());
 app.use(express.urlencoded());
 app.engine('handlebars', hbs.engine);
@@ -27,13 +70,14 @@ app.set('view engine', 'handlebars');
 app.set('views', './views');
 
 app.get('/', (req, res) => {
-    res.end('Home');
+    res.render('home');
 });
 
-app.use('/players', player_web_router);
-app.use('/tournament', tournament_router);
-app.use('/matches', matches_web_router);
-app.use('/team', team_router);
+app.use('/players', checkLogged, player_web_router);
+app.use('/tournament', checkLogged, tournament_router);
+app.use('/matches', checkLogged, matches_web_router);
+app.use('/team', checkLogged, team_router);
+app.use('/users', user_web_router);
 
 app.listen(8080, () => {
     console.log('Escutando na porta 8080...');

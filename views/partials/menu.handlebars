@@ -5,5 +5,16 @@
     <li><a href="/teams">Times</a>&nbsp;</li>
     <li><a href="/tournaments">Torneios</a>&nbsp;</li>
     <li><a href="/matches">Partidas</a>&nbsp;</li>
+    {{#if user}}
+
+      <li><a href="/users/logout">Sair</a>&nbsp;</li>
+
+      {{else}}
+
+      <li><a href="/users/login">Entrar</a>&nbsp;</li>
+
+      <li><a href="/users/register">Registrar</a>&nbsp;</li>
+
+    {{/if}}
   </ul>
 </nav>
