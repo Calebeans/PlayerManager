@@ -1,6 +1,6 @@
 <h1>Times</h1>
 
-<form method="POST" action="{{#if team_editing}}/saveTeam{{else}}/createTeam{{/if}}">
+<form method="POST" action="/teams/{{#if team_editing}}saveTeam{{else}}createTeam{{/if}}">
     <input type="hidden" name="id" value="{{team_editing.id}}">
 
     <label for="name">Nome do Time:</label>
@@ -49,11 +49,11 @@
                 {{/if}}
             </td>
             <td>
-                <form method="POST" action="/editTeam" style="display:inline;">
+                <form method="POST" action="/teams/editTeam" style="display:inline;">
                     <input type="hidden" name="id" value="{{id}}">
                     <button type="submit">Editar</button>
                 </form>
-                <form method="POST" action="/deleteTeam" style="display:inline;">
+                <form method="POST" action="/teams/deleteTeam" style="display:inline;">
                     <input type="hidden" name="id" value="{{id}}">
                     <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este time?')">Deletar</button>
                 </form>

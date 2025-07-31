@@ -1,6 +1,6 @@
 <h1>Torneios</h1>
 
-<form method="POST" action="{{#if tournament_editing}}/saveTournament{{else}}/createTournament{{/if}}">
+<form method="POST" action="/tournaments/{{#if tournament_editing}}saveTournament{{else}}createTournament{{/if}}">
     <input type="hidden" name="id" value="{{tournament_editing.id}}">
 
     <label for="title">Título do Torneio:</label>
@@ -48,11 +48,11 @@
             <td>{{endDate}}</td>
             <td>{{rules}}</td>
             <td>
-                <form method="POST" action="/editTournament" style="display:inline;">
+                <form method="POST" action="/tournaments/editTournament" style="display:inline;">
                     <input type="hidden" name="id" value="{{id}}">
                     <button type="submit">Editar</button>
                 </form>
-                <form method="POST" action="/deleteTournament" style="display:inline;">
+                <form method="POST" action="/tournaments/deleteTournament" style="display:inline;">
                     <input type="hidden" name="id" value="{{id}}">
                     <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este torneio?')">Deletar</button>
                 </form>
