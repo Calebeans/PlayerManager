@@ -1,0 +1,64 @@
+<h1>Times</h1>
+
+<form method="POST" action="{{#if team_editing}}/saveTeam{{else}}/createTeam{{/if}}">
+    <input type="hidden" name="id" value="{{team_editing.id}}">
+
+    <label for="name">Nome do Time:</label>
+    <input type="text" name="name" value="{{team_editing.name}}" required>
+
+    <label for="region">Região:</label>
+    <input type="text" name="region" value="{{team_editing.region}}" required>
+
+    <label for="foundedYear">Ano de Fundação:</label>
+    <input type="number" name="foundedYear" value="{{team_editing.foundedYear}}" required>
+
+    <label for="logoUrl">URL do Logo:</label>
+    <input type="text" name="logoUrl" value="{{team_editing.logoUrl}}">
+
+    <button type="submit">
+        {{#if team_editing}}Salvar edição{{else}}Criar time{{/if}}
+    </button>
+</form>
+
+<hr>
+
+<h2>Lista de Times</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Região</th>
+            <th>Fundado</th>
+            <th>Logo</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each teams}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{region}}</td>
+            <td>{{foundedYear}}</td>
+            <td>
+                {{#if logoUrl}}
+                    <img src="{{logoUrl}}" alt="Logo de {{name}}" width="50">
+                {{else}}
+                    —
+                {{/if}}
+            </td>
+            <td>
+                <form method="POST" action="/editTeam" style="display:inline;">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <button type="submit">Editar</button>
+                </form>
+                <form method="POST" action="/deleteTeam" style="display:inline;">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este time?')">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
