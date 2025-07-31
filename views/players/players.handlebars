@@ -1,0 +1,53 @@
+<h1>Jogadores</h1>
+
+<form action="/players/{{#if action }}save{{else}}create{{/if}}" method="post">
+    <input type="hidden" name="id" value="{{player_editing.id}}">
+
+    <label for="name">Nome</label><br>
+    <input type="text" id="name" name="name" value="{{player_editing.name}}" required><br><br>
+
+    <label for="age">Idade</label><br>
+    <input type="number" id="age" name="age" value="{{player_editing.age}}" required><br><br>
+
+    <label for="position">Posição</label><br>
+    <input type="text" id="position" name="position" value="{{player_editing.position}}" required><br><br>
+
+    <label for="TeamId">Time</label><br>
+    <input type="text" id="TeamId" name="TeamId" value="{{player_editing.TeamId}}" required><br><br>
+
+    <button>{{#if action }}Editar{{else}}Criar{{/if}}</button>
+</form>
+
+<hr>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Posição</th>
+            <th>Time</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each players}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.age}}</td>
+            <td>{{this.position}}</td>
+            <td>{{this.TeamId}}</td>
+            <td style="display: flex; justify-content: space-evenly;">
+                <form action="/players/edit" method="post">
+                    <input type="hidden" name="id" value="{{this.id}}">
+                    <button>Edit</button>
+                </form>
+                <form action="/players/delete" method="post">
+                    <input type="hidden" name="id" value="{{this.id}}">
+                    <button>Del</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
