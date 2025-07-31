@@ -2,7 +2,7 @@
   "name": "trabalho-final-webii",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "start": "node app.js",
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/Calebeans/trabalho-final-webII#readme",
   "dependencies": {
-    "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
     "mysql2": "^3.14.3",

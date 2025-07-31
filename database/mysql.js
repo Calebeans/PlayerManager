@@ -1,13 +1,11 @@
 import { Sequelize } from "sequelize";
 
-const password = process.env.DB_PASSWORD;
-
 const sequelize = new Sequelize({
     dialect: 'mysql',
     host: 'localhost',
     port: '3306',
     username: 'root',
-    password: password,
+    password: "senha",
     database: 'trabalho_node'
 });
 

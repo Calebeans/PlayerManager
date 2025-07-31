@@ -1,7 +1,6 @@
 import Player from "../../models/player.js";
 import Team from "../../models/team.js";
 
-// Criar jogador
 async function createPlayer(req, res) {
     const player = await Player.create({
         name: req.body.name,
@@ -13,19 +12,16 @@ async function createPlayer(req, res) {
     res.render('alerts', { title: 'Jogadores', body: 'Jogador criado.' });
 }
 
-// Listar jogadores
 async function listPlayers(req, res) {
     const list = await Player.findAll({ include: [Team], raw: true });
     res.render('players/players', { players: list });
 }
 
-// Editar jogador
 async function editPlayer(req, res) {
     const player = await Player.findOne({ where: { id: req.body.id } });
     res.render('players/players', { action: 'edit', player_editing: player.dataValues });
 }
 
-// Salvar edição
 async function savePlayer(req, res) {
     const player = await Player.findOne({ where: { id: req.body.id } });
 
@@ -39,7 +35,6 @@ async function savePlayer(req, res) {
     res.render('alerts', { title: 'Jogadores', body: 'Jogador editado.' });
 }
 
-// Deletar jogador
 async function deletePlayer(req, res) {
     const player = await Player.findOne({ where: { id: req.body.id } });
     await player.destroy();
