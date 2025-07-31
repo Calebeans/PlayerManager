@@ -1,0 +1,63 @@
+<h1>Torneios</h1>
+
+<form method="POST" action="/tournaments/{{#if tournament_editing}}saveTournament{{else}}createTournament{{/if}}">
+    <input type="hidden" name="id" value="{{tournament_editing.id}}">
+
+    <label for="title">Título do Torneio:</label>
+    <input type="text" name="title" value="{{tournament_editing.title}}" required>
+
+    <label for="gameType">Tipo de Jogo:</label>
+    <input type="text" name="gameType" value="{{tournament_editing.gameType}}" required>
+
+    <label for="startDate">Data de Início:</label>
+    <input type="date" name="startDate" value="{{tournament_editing.startDate}}" required>
+
+    <label for="endDate">Data de Término:</label>
+    <input type="date" name="endDate" value="{{tournament_editing.endDate}}" required>
+
+    <label for="rules">Regras:</label>
+    <textarea name="rules" rows="4">{{tournament_editing.rules}}</textarea>
+
+    <button type="submit">
+        {{#if action}}Salvar edição{{else}}Criar torneio{{/if}}
+    </button>
+</form>
+
+<hr>
+
+<h2>Lista de Torneios</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Tipo de Jogo</th>
+            <th>Início</th>
+            <th>Término</th>
+            <th>Regras</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each tournaments}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>{{gameType}}</td>
+            <td>{{startDate}}</td>
+            <td>{{endDate}}</td>
+            <td>{{rules}}</td>
+            <td>
+                <form method="POST" action="/tournaments/editTournament" style="display:inline;">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <button type="submit">Editar</button>
+                </form>
+                <form method="POST" action="/tournaments/deleteTournament" style="display:inline;">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este torneio?')">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

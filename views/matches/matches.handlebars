@@ -1,6 +1,6 @@
 <h1>Partidas</h1>
 
-<form method="POST" action="{{#if match_editing}}/saveMatch{{else}}/createMatch{{/if}}">
+<form method="POST" action="/matches/{{#if match_editing}}saveMatch{{else}}createMatch{{/if}}">
     <input type="hidden" name="id" value="{{match_editing.id}}">
     
     <label for="scheduledDate">Data agendada:</label>
@@ -36,11 +36,11 @@
             <td>{{result}}</td>
             <td>{{Tournament.name}}</td>
             <td>
-                <form method="POST" action="/editMatch" style="display:inline;">
+                <form method="POST" action="/matches/editMatch" style="display:inline;">
                     <input type="hidden" name="id" value="{{id}}">
                     <button type="submit">Editar</button>
                 </form>
-                <form method="POST" action="/deleteMatch" style="display:inline;">
+                <form method="POST" action="/matches/deleteMatch" style="display:inline;">
                     <input type="hidden" name="id" value="{{id}}">
                     <button type="submit" onclick="return confirm('Tem certeza que deseja deletar esta partida?')">Deletar</button>
                 </form>
