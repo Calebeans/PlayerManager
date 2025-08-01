@@ -31,42 +31,29 @@ const hbs = create({
 const SequelizeStore = css(session.Store);
 
 const sequelizeStore = new SequelizeStore({
-
     db: sequelize,
-
     tableName: 'sessions',
-
     checkExpirationInterval: 5 * 60 * 1000,
-
     expiration: 1 * 60 * 60 * 1000 
-
 });
 
 app.use(session({
-
     secret: '*&long+and+secure+secret=%445',
-
     name: 'sess_cookie_param',
-
     store: sequelizeStore,
-
     cookie: {
-
         maxAge: 1 * 60 * 60 * 1000,
-
         secure: false,
-
         httpOnly: true
-
     },
-
     saveUninitialized: false, 
-
     resave: false
-
 }));
 
+await sequelizeStore.sync();
+
 app.use(express.json());
+app.use(express.static('public'));
 app.use(express.urlencoded());
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -78,9 +65,9 @@ app.get('/', (req, res) => {
 
 
 app.use('/players', checkLogged, player_web_router);
-app.use('/tournament', checkLogged, tournament_router);
+app.use('/tournaments', checkLogged, tournament_web_router);
 app.use('/matches', checkLogged, matches_web_router);
-app.use('/team', checkLogged, team_router);
+app.use('/teams', checkLogged, team_web_router);
 app.use('/users', user_web_router);
 
 

@@ -23,42 +23,45 @@
 <hr>
 
 <h2>Lista de Times</h2>
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Região</th>
-            <th>Fundado</th>
-            <th>Logo</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each teams}}
-        <tr>
-            <td>{{id}}</td>
-            <td>{{name}}</td>
-            <td>{{region}}</td>
-            <td>{{foundedYear}}</td>
-            <td>
-                {{#if logoUrl}}
-                    <img src="{{logoUrl}}" alt="Logo de {{name}}" width="50">
-                {{else}}
-                    —
-                {{/if}}
-            </td>
-            <td>
-                <form method="POST" action="/teams/editTeam" style="display:inline;">
-                    <input type="hidden" name="id" value="{{id}}">
-                    <button type="submit">Editar</button>
-                </form>
-                <form method="POST" action="/teams/deleteTeam" style="display:inline;">
-                    <input type="hidden" name="id" value="{{id}}">
-                    <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este time?')">Deletar</button>
-                </form>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+
+<div class="table-wrapper">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Região</th>
+                <th>Fundado</th>
+                <th>Logo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each teams}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>{{region}}</td>
+                <td>{{foundedYear}}</td>
+                <td>
+                    {{#if logoUrl}}
+                        <img src="{{logoUrl}}" alt="Logo de {{name}}" width="50">
+                    {{else}}
+                        —
+                    {{/if}}
+                </td>
+                <td>
+                    <form method="POST" action="/teams/editTeam" style="display:inline;">
+                        <input type="hidden" name="id" value="{{id}}">
+                        <button type="submit">Editar</button>
+                    </form>
+                    <form method="POST" action="/teams/deleteTeam" style="display:inline;">
+                        <input type="hidden" name="id" value="{{id}}">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este time?')">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

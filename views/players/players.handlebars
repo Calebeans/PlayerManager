@@ -25,39 +25,40 @@
 </form>
 
 <hr>
-
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Apelido</th>
-            <th>Idade</th>
-            <th>Posição</th>
-            <th>Jogo Favorito</th>
-            <th>Time</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each players}}
-        <tr>
-            <td>{{this.name}}</td>
-            <td>{{this.nickname}}</td>
-            <td>{{this.age}}</td>
-            <td>{{this.position}}</td>
-            <td>{{this.favoriteGame}}</td>
-            <td>{{this.TeamId}}</td>
-            <td style="display: flex; justify-content: space-evenly;">
-                <form action="/players/edit" method="post">
-                    <input type="hidden" name="id" value="{{this.id}}">
-                    <button>Edit</button>
-                </form>
-                <form action="/players/delete" method="post">
-                    <input type="hidden" name="id" value="{{this.id}}">
-                    <button>Del</button>
-                </form>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Apelido</th>
+                <th>Idade</th>
+                <th>Posição</th>
+                <th>Jogo Favorito</th>
+                <th>Time</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each players}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.nickname}}</td>
+                <td>{{this.age}}</td>
+                <td>{{this.position}}</td>
+                <td>{{this.favoriteGame}}</td>
+                <td>{{this.TeamId}}</td>
+                <td style="display: flex; justify-content: space-evenly;">
+                    <form action="/players/edit" method="post">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <button>Edit</button>
+                    </form>
+                    <form action="/players/delete" method="post">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <button>Del</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
