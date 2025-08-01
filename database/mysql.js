@@ -8,16 +8,16 @@ const sequelize = new Sequelize({
     password: "senha",
     database: 'trabalho_node'
 });
-
 export async function syncer() {
     try {
         await sequelize.authenticate();
-        await sequelize.sync();
+         sequelize.sync();
     } catch (error) {
         console.log('Erro ao acessar a base de dados.');
         return false;
     }
     return true;
 }
+
 
 export default sequelize;
