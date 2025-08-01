@@ -10,8 +10,11 @@
     <input type="text" name="result" value="{{match_editing.result}}" required>
 
     <label for="TournamentId">ID do Torneio:</label>
-    <input type="number" name="TournamentId" value="{{match_editing.TournamentId}}" required>
-
+    <select name="TournamentId" id="TournamentId">
+        {{#each tournaments}}
+        <option value="{{this.id}}" {{#if (equals this.id ../match_editing.TournamentId)}}selected{{/if}}>{{this.title}}</option>
+        {{/each}}
+    </select>
     <button type="submit">{{#if match_editing}}Salvar edição{{else}}Criar partida{{/if}}</button>
 </form>
 
@@ -19,36 +22,34 @@
 
 <h2>Lista de Partidas</h2>
 
-<div>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Data</th>
-                <th>Resultado</th>
-                <th>Torneio</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each matches}}
-            <tr>
-                <td>{{id}}</td>
-                <td>{{scheduledDate}}</td>
-                <td>{{result}}</td>
-                <td>{{Tournament.name}}</td>
-                <td>
-                    <form method="POST" action="/matches/editMatch" style="display:inline;">
-                        <input type="hidden" name="id" value="{{id}}">
-                        <button type="submit">Editar</button>
-                    </form>
-                    <form method="POST" action="/matches/deleteMatch" style="display:inline;">
-                        <input type="hidden" name="id" value="{{id}}">
-                        <button type="submit" onclick="return confirm('Tem certeza que deseja deletar esta partida?')">Deletar</button>
-                    </form>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-</div>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Resultado</th>
+            <th>Torneio</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each matches}}
+        <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.scheduledDate}}</td>
+            <td>{{this.result}}</td>
+            <td>{{this.Tournament.title}}</td>
+            <td>
+                <form method="POST" action="/matches/editMatch" style="display:inline;">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <button type="submit">Editar</button>
+                </form>
+                <form method="POST" action="/matches/deleteMatch" style="display:inline;">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <button type="submit" onclick="return confirm('Tem certeza que deseja deletar esta partida?')">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

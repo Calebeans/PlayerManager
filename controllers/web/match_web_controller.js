@@ -17,17 +17,20 @@ async function createMatch(req, res) {
 }
 
 async function listMatches(req, res) {
-    const list = await Match.findAll({ include: [Tournament], raw: true });
-    res.render('matches/matches', { matches: list });
+    const list = await Match.findAll({ include: [Tournament]});
+    const list_processed = list.map((match) => { return match.toJSON() });
+    const tournaments = await Tournament.findAll({raw:true});
+    res.render('matches/matches', { matches: list_processed, tournaments: tournaments });
 }
 
 async function editMatch(req, res) {
-    const match = await Match.findOne({ where: { id: req.body.id } });
+    const match = await Match.findOne({ where: { id: req.body.id }, include: Tournament });    
     if (!match) {
         return res.render('alerts', { title: 'Partidas', body: 'Partida não encontrada.' });
     }
-
-    res.render('matches/matches', { action: 'edit', match_editing: match.dataValues });
+    const tournaments = await Tournament.findAll({raw:true});
+    const match_editing = match.toJSON();
+    res.render('matches/matches', { action: 'edit', match_editing: match_editing, tournaments: tournaments });
 }
 
 async function saveMatch(req, res) {

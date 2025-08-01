@@ -27,6 +27,8 @@ const hbs = create({
     layoutsDir: 'views/layouts/',
     partialsDir: 'views/partials/'
 });
+hbs.handlebars.registerHelper('equals', (a, b) => { return a == b; });
+hbs.handlebars.registerHelper('contains', (a, b) => { return typeof a != "undefined" && a.indexOf(b) != -1; });
 
 const SequelizeStore = css(session.Store);
 

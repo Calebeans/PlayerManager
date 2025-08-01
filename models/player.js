@@ -6,7 +6,8 @@ const Player = sequelize.define('Player', {
     name: DataTypes.STRING,
     nickname: DataTypes.STRING,
     age: DataTypes.INTEGER,
-    favoriteGame: DataTypes.STRING
+    favoriteGame: DataTypes.STRING,
+    position: DataTypes.STRING,
 });
 
 Player.belongsTo(Team);
