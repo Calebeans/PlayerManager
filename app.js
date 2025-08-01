@@ -27,6 +27,8 @@ const hbs = create({
     layoutsDir: 'views/layouts/',
     partialsDir: 'views/partials/'
 });
+hbs.handlebars.registerHelper('equals', (a, b) => { return a == b; });
+hbs.handlebars.registerHelper('contains', (a, b) => { return typeof a != "undefined" && a.indexOf(b) != -1; });
 
 const SequelizeStore = css(session.Store);
 
@@ -66,6 +68,8 @@ app.use(session({
 
 }));
 
+await sequelizeStore.sync();
+
 app.use(express.json());
 app.use(express.urlencoded());
 app.engine('handlebars', hbs.engine);
@@ -78,9 +82,9 @@ app.get('/', (req, res) => {
 
 
 app.use('/players', checkLogged, player_web_router);
-app.use('/tournament', checkLogged, tournament_router);
+app.use('/tournaments', checkLogged, tournament_web_router);
 app.use('/matches', checkLogged, matches_web_router);
-app.use('/team', checkLogged, team_router);
+app.use('/teams', checkLogged, team_web_router);
 app.use('/users', user_web_router);
 
 

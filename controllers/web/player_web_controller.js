@@ -5,6 +5,8 @@ async function createPlayer(req, res) {
     const player = await Player.create({
         name: req.body.name,
         age: req.body.age,
+        nickname: req.body.nickname,
+        favoriteGame: req.body.favoriteGame,
         position: req.body.position,
         TeamId: req.body.TeamId
     });
@@ -13,13 +15,20 @@ async function createPlayer(req, res) {
 }
 
 async function listPlayers(req, res) {
-    const list = await Player.findAll({ include: [Team], raw: true });
-    res.render('players/players', { players: list });
+    const list = await Player.findAll({ include: [Team]});
+    const list_processed = list.map((i) => { return i.toJSON() });
+    const teams = await Team.findAll({raw: true});
+    res.render('players/players', { players: list_processed, teams: teams });
 }
 
 async function editPlayer(req, res) {
     const player = await Player.findOne({ where: { id: req.body.id } });
-    res.render('players/players', { action: 'edit', player_editing: player.dataValues });
+    if(!player) {
+        return res.render('alerts', {title: 'Jogadores', body: 'Jogador não encontrado.'});
+    }
+    const teams = await Team.findAll({raw:true});
+    const player_editing = player.toJSON();
+    res.render('players/players', { action: 'edit', player_editing: player_editing, teams:teams });
 }
 
 async function savePlayer(req, res) {
@@ -27,6 +36,8 @@ async function savePlayer(req, res) {
 
     player.name = req.body.name;
     player.age = req.body.age;
+    player.favoriteGame = req.body.favoriteGame;
+    player.nickname = req.body.nickname;
     player.position = req.body.position;
     player.TeamId = req.body.TeamId;
 
