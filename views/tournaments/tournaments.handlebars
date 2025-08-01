@@ -4,19 +4,19 @@
     <input type="hidden" name="id" value="{{tournament_editing.id}}">
 
     <label for="title">Título do Torneio:</label>
-    <input type="text" name="title" value="{{tournament_editing.title}}" required>
+    <input type="text" name="title" value="{{tournament_editing.title}}" required><br>
 
     <label for="gameType">Tipo de Jogo:</label>
-    <input type="text" name="gameType" value="{{tournament_editing.gameType}}" required>
+    <input type="text" name="gameType" value="{{tournament_editing.gameType}}" required><br>
 
     <label for="startDate">Data de Início:</label>
-    <input type="date" name="startDate" value="{{tournament_editing.startDate}}" required>
+    <input type="text" name="startDate" value="{{tournament_editing.startDate}}" required><br>
 
     <label for="endDate">Data de Término:</label>
-    <input type="date" name="endDate" value="{{tournament_editing.endDate}}" required>
+    <input type="text" name="endDate" value="{{tournament_editing.endDate}}" required><br>
 
     <label for="rules">Regras:</label>
-    <textarea name="rules" rows="4">{{tournament_editing.rules}}</textarea>
+    <textarea name="rules" rows="4">{{tournament_editing.rules}}</textarea><br>
 
     <button type="submit">
         {{#if action}}Salvar edição{{else}}Criar torneio{{/if}}

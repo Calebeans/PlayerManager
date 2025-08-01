@@ -4,26 +4,26 @@
     <input type="hidden" name="id" value="{{player_editing.id}}">
 
     <label for="name">Nome</label><br>
-    <input type="text" id="name" name="name" value="{{player_editing.name}}" required><br><br>
+    <input type="text" id="name" name="name" value="{{player_editing.name}}" required><br>
 
     <label for="nickname">Apelido</label><br>
-    <input type="text" id="nickname" name="nickname" value="{{player_editing.nickname}}" required><br><br>
+    <input type="text" id="nickname" name="nickname" value="{{player_editing.nickname}}" required><br>
 
     <label for="age">Idade</label><br>
-    <input type="number" id="age" name="age" value="{{player_editing.age}}" required><br><br>
+    <input type="number" id="age" name="age" value="{{player_editing.age}}" required><br>
 
     <label for="position">Posição</label><br>
-    <input type="text" id="position" name="position" value="{{player_editing.position}}" required><br><br>
+    <input type="text" id="position" name="position" value="{{player_editing.position}}" required><br>
 
     <label for="favoriteGame">Jogo Favorito</label><br>
-    <input type="text" id="favoriteGame" name="favoriteGame" value="{{player_editing.favoriteGame}}" required><br><br>
+    <input type="text" id="favoriteGame" name="favoriteGame" value="{{player_editing.favoriteGame}}" required><br>
 
     <label for="TeamId">Time</label><br>
     <select name="TeamId" id="TeamID">
         {{#each teams}}
         <option value="{{this.id}}" {{#if (equals this.id ../player_editing.TeamId)}}selected{{/if}}>{{this.name}}</option>
         {{/each}}
-    </select>
+    </select><br>
 
     <button>{{#if action }}Editar{{else}}Criar{{/if}}</button>
 </form>

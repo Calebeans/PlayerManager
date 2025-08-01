@@ -4,17 +4,17 @@
     <input type="hidden" name="id" value="{{match_editing.id}}">
     
     <label for="scheduledDate">Data agendada:</label>
-    <input type="datetime-local" name="scheduledDate" value="{{match_editing.scheduledDate}}" required>
+    <input type="text" name="scheduledDate" value="{{match_editing.scheduledDate}}" required><br>
 
     <label for="result">Resultado:</label>
-    <input type="text" name="result" value="{{match_editing.result}}" required>
+    <input type="text" name="result" value="{{match_editing.result}}" required><br>
 
     <label for="TournamentId">ID do Torneio:</label>
     <select name="TournamentId" id="TournamentId">
         {{#each tournaments}}
         <option value="{{this.id}}" {{#if (equals this.id ../match_editing.TournamentId)}}selected{{/if}}>{{this.title}}</option>
         {{/each}}
-    </select>
+    </select><br>
     <button type="submit">{{#if match_editing}}Salvar edição{{else}}Criar partida{{/if}}</button>
 </form>
 
