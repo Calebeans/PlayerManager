@@ -15,7 +15,7 @@
         <option value="{{this.id}}" {{#if (equals this.id ../match_editing.TournamentId)}}selected{{/if}}>{{this.title}}</option>
         {{/each}}
     </select><br>
-    <button type="submit">{{#if match_editing}}Salvar edição{{else}}Criar partida{{/if}}</button>
+    <button type="submit" class="botao-estiloso">{{#if match_editing}}Salvar edição{{else}}Criar partida{{/if}}</button>
 </form>
 
 <hr>

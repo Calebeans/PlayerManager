@@ -1,5 +1,4 @@
 :root {
-  /* Cores */
   --color-primary: #007bff;
   --color-primary-dark: #0056b3;
   --color-bg: #f9fafc;
@@ -9,16 +8,13 @@
   --color-footer-text: #cccccc;
   --color-border: #dddddd;
 
-  /* Tipografia */
   --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --fluid-text-min: 1rem;
   --fluid-text-max: 1.125rem;
   --fluid-line-height: 1.6;
 
-  /* Espaçamentos (base unit) */
   --space: 1rem;
 
-  /* Bordas e sombras */
   --radius: 0.5rem;
   --shadow-light: 0 2px 6px rgba(0, 0, 0, 0.1);
   --shadow-strong: 0 0 12px rgba(0, 0, 0, 0.05);
@@ -31,11 +27,10 @@ body {
 }
 
 main.container {
-  flex: 1;               /* ocupa todo o espaço disponível */
+  flex: 1; 
 }
 
 footer {
-  /* remove margin-top fixa e empurra para baixo */
   margin-top: auto;
 }
 
@@ -57,7 +52,6 @@ body {
   min-height: 100vh;
 }
 
-/* Container centralizado e fluido */
 .container {
   width: clamp(300px, 90vw, 1000px);
   margin: calc(var(--space) * 2) auto;
@@ -158,5 +152,22 @@ footer {
   padding: var(--space);
   font-size: 0.875rem;
   margin-top: calc(var(--space) * 2);
+}
+
+.botao-estiloso {
+  background-color: #007BFF;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.botao-estiloso:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 

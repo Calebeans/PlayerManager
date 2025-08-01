@@ -5,7 +5,7 @@ const sequelize = new Sequelize({
     host: 'localhost',
     port: '3306',
     username: 'root',
-    password: "senha",
+    password: "Assembleia12345!@#$%",
     database: 'trabalho_node'
 });
 export async function syncer() {
