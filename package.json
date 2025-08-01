@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Calebeans/trabalho-final-webII#readme",
   "dependencies": {
+    "@sequelize/postgres": "^7.0.0-alpha.46",
     "bcrypt": "^6.0.0",
     "connect-session-sequelize": "^8.0.2",
     "express": "^5.1.0",
