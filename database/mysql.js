@@ -5,7 +5,7 @@ import { Sequelize } from "sequelize";
 //    host: 'localhost',
 //    port: '3306',
 //    username: 'root',
-//    password: "Assembleia12345!@#$%",
+//    password: "senha",
 //    database: 'trabalho_node'
 //});
 //export async function syncer() {
